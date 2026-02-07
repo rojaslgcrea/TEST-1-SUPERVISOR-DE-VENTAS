@@ -2,100 +2,99 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Test de Supervisión - International Connections</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación Supervisor de Ventas - International Connections</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #f4f7f6; padding: 20px; color: #333; }
-        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 10px; shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        h1 { color: #1a237e; text-align: center; border-bottom: 2px solid #1a237e; padding-bottom: 10px; }
-        .pregunta { margin-bottom: 25px; padding: 15px; border-bottom: 1px solid #eee; }
-        .pregunta p { font-weight: bold; margin-bottom: 10px; }
-        label { display: block; margin-bottom: 8px; cursor: pointer; padding: 5px; border-radius: 4px; }
-        label:hover { background: #e8eaf6; }
-        input[type="text"] { width: 100%; padding: 10px; margin-bottom: 20px; box-sizing: border-box; border: 2px solid #1a237e; border-radius: 5px; }
-        button { background: #1a237e; color: white; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; width: 100%; font-size: 18px; font-weight: bold; }
-        button:disabled { background: #ccc; }
-        #mensaje { text-align: center; margin-top: 20px; font-weight: bold; font-size: 1.2em; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f9; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        h2 { color: #1a3a5a; text-align: center; border-bottom: 2px solid #1a3a5a; padding-bottom: 10px; }
+        .empresa { text-align: center; font-weight: bold; color: #7f8c8d; margin-bottom: 30px; letter-spacing: 1px; }
+        .pregunta { margin-bottom: 30px; padding: 20px; border-left: 5px solid #1a3a5a; background: #fafafa; border-radius: 4px; }
+        .pregunta p { font-weight: bold; font-size: 16px; margin-bottom: 15px; }
+        .opcion { display: block; margin: 10px 0; cursor: pointer; padding: 8px; border-radius: 4px; transition: 0.3s; }
+        .opcion:hover { background: #eef2f7; }
+        input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+        input[type="text"] { width: 100%; padding: 12px; margin-bottom: 25px; border: 2px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        button { background: #1a3a5a; color: white; border: none; padding: 20px; border-radius: 6px; cursor: pointer; width: 100%; font-size: 18px; font-weight: bold; margin-top: 20px; }
+        button:hover { background: #2c3e50; }
+        #mensaje { text-align: center; margin-top: 20px; font-weight: bold; color: #27ae60; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Evaluación de Liderazgo y Supervisión</h1>
-    <form id="testForm">
-        <label>Nombre Completo del Postulante:</label>
-        <input type="text" id="nombre" required placeholder="Ingrese su nombre">
+    <h2>EVALUACIÓN SUPERVISOR DE VENTAS</h2>
+    <div class="empresa">INTERNATIONAL CONNECTIONS</div>
+    
+    <label><strong>Nombre Completo del Candidato:</strong></label>
+    <input type="text" id="nombre" placeholder="Escriba aquí..." required>
 
-        <div id="preguntasContenedor"></div>
+    <div id="preguntasContenedor"></div>
 
-        <button type="submit" id="btnEnviar">Finalizar y Enviar Resultados</button>
-    </form>
-    <div id="mensaje"></div>
+    <button id="btnEnviar">ENVIAR EVALUACIÓN</button>
+    <p id="mensaje"></p>
 </div>
 
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxZzy8teSaGlLJ7kdGadvIx_WH4R3d7izOJPiuzHaoPqytHouz-PRhTius9C6uXjB0/exec'; // <--- PEGA TU URL DE APPS SCRIPT AQUÍ
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxZzy8teSaGlLJ7kdGadvIx_WH4R3d7izOJPiuzHaoPqytHouz-PRhTius9C6uXjB0/exec';
 
     const preguntas = [
-        { p: "1. Cuando un ejecutivo cumple resultados pero genera fricción constante en el equipo, tú:", o: ["Evalúas el impacto real antes de intervenir.", "Lo confrontas directamente y defines límites claros de comportamiento.", "Priorizas el resultado mientras cumpla la meta.", "Lo rotas de zona o función si no corrige."], v: [2, 4, 1, 3] },
-        { p: "2. Cuando uno de tus ejecutivos no cumple meta por segundo mes consecutivo, tú tiendes a:", o: ["Revisar primero si el problema está en el proceso o en el mercado antes de hablar de resultados.", "Conversar con el ejecutivo para entender qué decisiones personales está tomando en campo.", "Ajustar el seguimiento diario para detectar desviaciones más rápido.", "Comparar su desempeño con el resto del equipo para identificar brechas."], v: [3, 2, 4, 3] },
-        { p: "3. Como supervisor, te sientes más cómodo cuando:", o: ["Los resultados hablan sí solos y requieren poca intervención.", "Puedes adaptar tu liderazgo según la personalidad de cada ejecutivo.", "Tu equipo sabe exactamente qué se espera de ellos cada semana.", "Mantienes reuniones frecuentes y breves para alinear criterios."], v: [0, 1, 4, 4] },
-        { p: "4. Frente a un problema recurrente en campo…", o: ["Refuerzo el proceso y hago seguimiento", "Converso para entender qué le pasa", "Ajusto metas temporalmente", "Cambio la estrategia solo para ese vendedor"], v: [4, 2, 0, 2] },
-        { p: "5. Cuando recibes feedback directo de tu jefe…", o: ["Lo tomo como guía y actúo", "Lo escucho, pero lo evalúo con cautela", "Me incomoda, pero cumplo", "Lo justifico con contexto"], v: [4, 3, 3, 0] },
-        { p: "6. Cuando debes dar retroalimentación negativa, sueles enfocarte PRIMERO en:", o: ["El compromiso futuro del ejecutivo.", "El impacto de la conducta en el equipo.", "Las oportunidades de mejora a corto plazo.", "Los hechos concretos y medibles."], v: [2, 2, 3, 4] },
-        { p: "7. Para ti, el seguimiento ideal de un ejecutivo de ventas es aquel que:", o: ["No interfiere demasiado en la autonomía del vendedor.", "Permite detectar problemas antes de que afecten el cierre del mes.", "Se basa en indicadores claros y periódicos.", "Se ajusta según el nivel de experiencia del ejecutivo."], v: [0, 4, 4, 2] },
-        { p: "8. Cuando revisas resultados semanales y algo no cuadra, tu primera reacción suele ser:", o: ["Revisar el detalle de las operaciones.", "Preguntar directamente al ejecutivo involucrado.", "Comparar con semanas anteriores.", "Esperar un poco más, hasta un tiempo prudente para ver si se corrige solo."], v: [4, 3, 3, 0] },
-        { p: "9. Si tienes presión por resultados y recursos limitados, normalmente priorizas:", o: ["Las acciones que impactan más rápido en ventas.", "El orden y control para evitar errores futuros.", "Mantener motivado al equipo.", "Ajustar expectativas con la gerencia."], v: [4, 3, 2, 0] },
-        { p: "10. Cuando una decisión que tomaste no dio el resultado esperado, tú tiendes a:", o: ["Asumir la responsabilidad y seguir adelante con motivación.", "Compartir lo ocurrido con tu equipo.", "Ajustar el plan para corregir sin detenerte demasiado en el error.", "Analizar qué variables no consideraste."], v: [2, 1, 3, 4] },
-        { p: "11. Para ti, un buen supervisor de ventas es principalmente alguien que:", o: ["Forma vendedores más autónomos.", "Asegura el cumplimiento de metas.", "Mantiene el orden y la disciplina.", "Sirve de puente entre gerencia y campo."], v: [2, 4, 3, 1] },
-        { p: "12. Cuando piensas en el éxito de tu equipo, lo asocias más con:", o: ["La consistencia en resultados.", "El crecimiento individual de cada ejecutivo.", "La estabilidad del proceso comercial.", "La capacidad de adaptarse al mercado."], v: [4, 1, 4, 2] },
-        { p: "13. Al iniciar la semana, lo primero que haces es:", o: ["Salir a campo con el vendedor más débil.", "Revisar pendientes administrativos.", "Revisar indicadores y desvíos de la semana anterior.", "Reunirte con el equipo para alinear expectativas."], v: [4, 1, 4, 3] }, // Nota: Se ajustó R13 según tu lista (C=4)
-        { p: "14. Un ejecutivo repite explicaciones externas para justificar resultados. Tú:", o: ["Escuchas y decides si es un caso excepcional.", "Ajustas temporalmente su objetivo.", "Esperas al cierre de mes para evaluar.", "Solicitar datos concretos que respalden lo dicho."], v: [3, 0, 0, 4] },
-        { p: "15. Dos ejecutivos en la misma zona tienen resultados opuestos. Prioridad:", o: ["Analizar qué hace distinto el que cumple y replicarlo.", "Revisar si ambos tienen las mismas condiciones.", "Acompañar al que no cumple para observar en campo.", "Reasignar clientes o rutas."], v: [4, 2, 3, 0] },
-        { p: "16. Recibes un reporte incompleto de un ejecutivo. Tú:", o: ["Lo devuelves y pides que se complete de inmediato.", "Lo aceptas y haces seguimiento luego.", "Lo completas con la información que tienes.", "Lo dejas pasar si el resultado acompaña."], v: [4, 0, 2, 0] },
-        { p: "17. A una semana del cierre, el número no cuadra. Tú:", o: ["Mantienes el plan para no generar desorden.", "Reasignas foco y recursos a los cierres más probables.", "Exiges mayor intensidad al equipo.", "Informas a gerencia el riesgo y esperas indicaciones."], v: [0, 4, 3, 0] },
-        { p: "18. Dos ejecutivos entran en conflicto y afecta la ejecución. Tú:", o: ["Delegas la solución en ellos.", "Priorizas resultados y postergas el tema.", "Intervienes rápido y defines reglas claras.", "Escuchas brevemente, tomas una decisión y actúas."], v: [0, 0, 4, 4] }
+        { p: "1. Cuando un ejecutivo cumple resultados pero genera fricción constante en el equipo, tú:", o: ["A. Evalúas el impacto real antes de intervenir.", "B. Lo confrontas directamente y defines límites claros de comportamiento.", "C. Priorizas el resultado mientras cumpla la meta.", "D. Lo rotas de zona o función si no corrige."], v: [2, 4, 1, 3] },
+        { p: "2. Cuando uno de tus ejecutivos no cumple meta por segundo mes consecutivo, tú tiendes a:", o: ["A. Revisar primero si el problema está en el proceso o en el mercado antes de hablar de resultados.", "B. Conversar con el ejecutivo para entender qué decisiones personales está tomando en campo.", "C. Ajustar el seguimiento diario para detectar desviaciones más rápido.", "D. Comparar su desempeño con el resto del equipo para identificar brechas."], v: [3, 2, 4, 3] },
+        { p: "3. Como supervisor, te sientes más cómodo cuando:", o: ["A. Los resultados hablan sí solos y requieren poca intervención.", "B. Puedes adaptar tu liderazgo según la personalidad de cada ejecutivo.", "C. Tu equipo sabe exactamente qué se espera de ellos cada semana.", "D. Mantienes reuniones frecuentes y breves para alinear criterios."], v: [0, 1, 4, 4] },
+        { p: "4. Frente a un problema recurrente en campo…", o: ["A. Refuerzo el proceso y hago seguimiento", "B. Converso para entender qué le pasa", "C. Ajusto metas temporalmente", "D. Cambio la estrategia solo para ese vendedor"], v: [4, 2, 0, 2] },
+        { p: "5. Cuando recibes feedback directo de tu jefe…", o: ["A. Lo tomo como guía y actúo", "B. Lo escucho, pero lo evalúo con cautela", "C. Me incomoda, pero cumplo", "D. Lo justifico con contexto"], v: [4, 3, 3, 0] },
+        { p: "6. Cuando debes dar retroalimentación negativa, sueles enfocarte PRIMERO en:", o: ["A. El compromiso futuro del ejecutivo.", "B. El impacto de la conducta en el equipo.", "C. Las oportunidades de mejora a corto plazo.", "D. Los hechos concretos y medibles."], v: [2, 2, 3, 4] },
+        { p: "7. Para ti, el seguimiento ideal de un ejecutivo de ventas es aquel que:", o: ["A. No interfiere demasiado en la autonomía del vendedor.", "B. Permite detectar problemas antes de que afecten el cierre del mes.", "C. Se basa en indicadores claros y periódicos.", "D. Se ajusta según el nivel de experiencia del ejecutivo."], v: [0, 4, 4, 2] },
+        { p: "8. Cuando revisas resultados semanales y algo no cuadra, tu primera reacción suele ser:", o: ["A. Revisar el detalle de las operaciones.", "B. Preguntar directamente al ejecutivo involucrado.", "C. Comparar con semanas anteriores.", "D. Esperar un poco más, hasta un tiempo prudente para ver si se corrige solo."], v: [4, 3, 3, 0] },
+        { p: "9. Si tienes presión por resultados y recursos limitados, normalmente priorizas:", o: ["A. Las acciones que impactan más rápido en ventas.", "B. El orden y control para evitar errores futuros.", "C. Mantener motivado al equipo.", "D. Ajustar expectativas con la gerencia."], v: [4, 3, 2, 0] },
+        { p: "10. Cuando una decisión que tomaste no dio el resultado esperado, tú tiendes a:", o: ["A. Asumir la responsabilidad y seguir adelante con motivación.", "B. Compartir lo ocurrido con tu equipo.", "C. Ajustar el plan para corregir sin detenerte demasiado en el error.", "D. Analizar qué variables no consideraste."], v: [2, 1, 3, 4] },
+        { p: "11. Para ti, un buen supervisor de ventas es principalmente alguien que:", o: ["A. Forma vendedores más autónomos.", "B. Asegura el cumplimiento de metas.", "C. Mantiene el orden y la disciplina.", "D. Sirve de puente entre gerencia y campo."], v: [2, 4, 3, 1] },
+        { p: "12. Cuando piensas en el éxito de tu equipo, lo asocias más con:", o: ["A. La consistencia en resultados.", "B. El crecimiento individual de cada ejecutivo.", "C. La estabilidad del proceso comercial.", "D. La capacidad de adaptarse al mercado."], v: [4, 1, 4, 2] },
+        { p: "13. Al iniciar la semana, lo primero que haces es:", o: ["A. Salir a campo con el vendedor más débil.", "B. Revisar pendientes administrativos.", "C. Revisar indicadores y desvíos de la semana anterior.", "D. Reunirte con el equipo para alinear expectativas."], v: [4, 1, 4, 3] },
+        { p: "14. Un ejecutivo repite explicaciones externas para justificar resultados. Tú:", o: ["A. Escuchas y decides si es un caso excepcional.", "B. Ajustas temporalmente su objetivo.", "C. Esperas al cierre de mes para evaluar.", "D. Solicitas datos concretos que respalden lo dicho."], v: [3, 0, 0, 4] },
+        { p: "15. Dos ejecutivos en la misma zona tienen resultados opuestos. Prioridad:", o: ["A. Analizar qué hace distinto el que cumple y replicarlo.", "B. Revisar si ambos tienen las mismas condiciones.", "C. Acompañar al que no cumple para observar en campo.", "D. Reasignar clientes o rutas."], v: [4, 2, 3, 0] },
+        { p: "16. Recibes un reporte incompleto de un ejecutivo. Tú:", o: ["A. Lo devuelves y pides que se complete de inmediato.", "B. Lo aceptas y haces seguimiento luego.", "C. Lo completas con la información que tienes.", "D. Lo dejas pasar si el resultado acompaña."], v: [4, 0, 2, 0] },
+        { p: "17. A una semana del cierre, el número no cuadra. Tú:", o: ["A. Mantienes el plan para no generar desorden.", "B. Reasignas foco y recursos a los cierres más probables.", "C. Exiges mayor intensidad al equipo.", "D. Informas a gerencia el riesgo y esperas indicaciones."], v: [0, 4, 3, 0] },
+        { p: "18. Dos ejecutivos entran en conflicto y afecta la ejecución. Tú:", o: ["A. Delegas la solución en ellos.", "B. Priorizas resultados y postergas el tema.", "C. Intervienes rápido y defines reglas claras para restablecer el foco en resultados.", "D. Escuchas brevemente a ambos, tomas una decisión y actúas con criterio."], v: [0, 0, 4, 4] }
     ];
 
     const contenedor = document.getElementById('preguntasContenedor');
     preguntas.forEach((pre, i) => {
-        let div = document.createElement('div');
-        div.className = 'pregunta';
-        div.innerHTML = `<p>${pre.p}</p>`;
-        pre.o.forEach((opt, j) => {
-            div.innerHTML += `<label><input type="radio" name="p${i}" value="${pre.v[j]}" required> ${opt}</label>`;
+        let html = `<div class="pregunta"><p>${pre.p}</p>`;
+        pre.o.forEach((opcion, index) => {
+            html += `<label class="opcion"><input type="radio" name="p${i}" value="${pre.v[index]}" required> ${opcion}</label>`;
         });
-        contenedor.appendChild(div);
+        html += `</div>`;
+        contenedor.innerHTML += html;
     });
 
-    document.getElementById('testForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const btn = document.getElementById('btnEnviar');
-        btn.disabled = true;
-        btn.innerText = "Enviando...";
+    document.getElementById('btnEnviar').addEventListener('click', function() {
+        const nombre = document.getElementById('nombre').value;
+        if(!nombre) { alert("Por favor, ingrese su nombre."); return; }
 
         const respuestas = [];
         for(let i=0; i<preguntas.length; i++) {
-            respuestas.push(document.querySelector(`input[name="p${i}"]:checked`).value);
+            const rb = document.querySelector(`input[name="p${i}"]:checked`);
+            if(!rb) { alert("Responda la pregunta " + (i+1)); return; }
+            respuestas.push({ texto: rb.parentElement.innerText.trim(), puntos: rb.value });
         }
 
-        const payload = {
-            nombre: document.getElementById('nombre').value,
-            respuestas: respuestas
-        };
+        this.disabled = true;
+        this.innerText = "Enviando...";
 
         fetch(scriptURL, {
             method: 'POST',
             mode: 'no-cors',
-            body: JSON.stringify(payload)
+            body: JSON.stringify({ nombre: nombre, respuestas: respuestas })
         }).then(() => {
-            document.getElementById('mensaje').innerText = "✅ Test enviado con éxito.";
-            this.reset();
+            document.getElementById('mensaje').innerText = "✅ Evaluación enviada con éxito.";
+            window.scrollTo(0,0);
         }).catch(() => {
-            alert("Error al enviar. Intente de nuevo.");
-            btn.disabled = false;
+            alert("Error al enviar.");
+            this.disabled = false;
         });
     });
 </script>
-
 </body>
 </html>
