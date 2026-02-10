@@ -36,6 +36,7 @@
 </div>
 
 <script>
+    // 1. Asegúrate de que esta sea la URL de tu última implementación (Nueva Versión)
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxZzy8teSaGlLJ7kdGadvIx_WH4R3d7izOJPiuzHaoPqytHouz-PRhTius9C6uXjB0/exec';
 
     const preguntas = [
@@ -83,10 +84,17 @@
         this.disabled = true;
         this.innerText = "Enviando...";
 
+        // --- EL CAMBIO PRINCIPAL ESTÁ AQUÍ ---
+        const payload = { 
+            nombre: nombre, 
+            respuestas: respuestas,
+            tipoTest: "SUPERVISOR DE VENTAS" // Nombre exacto de la pestaña en tu Sheets
+        };
+
         fetch(scriptURL, {
             method: 'POST',
             mode: 'no-cors',
-            body: JSON.stringify({ nombre: nombre, respuestas: respuestas })
+            body: JSON.stringify(payload)
         }).then(() => {
             document.getElementById('mensaje').innerText = "✅ Evaluación enviada con éxito.";
             window.scrollTo(0,0);
@@ -98,3 +106,4 @@
 </script>
 </body>
 </html>
+
