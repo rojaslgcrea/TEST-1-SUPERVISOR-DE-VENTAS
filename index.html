@@ -35,8 +35,8 @@
     <p id="mensaje"></p>
 </div>
 
-<script>
-    // 1. Asegúrate de que esta sea la URL de tu última implementación (Nueva Versión)
+<<script>
+    // 1. URL de tu última implementación (Asegúrate de que sea la más reciente)
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxZzy8teSaGlLJ7kdGadvIx_WH4R3d7izOJPiuzHaoPqytHouz-PRhTius9C6uXjB0/exec';
 
     const preguntas = [
@@ -78,17 +78,21 @@
         for(let i=0; i<preguntas.length; i++) {
             const rb = document.querySelector(`input[name="p${i}"]:checked`);
             if(!rb) { alert("Responda la pregunta " + (i+1)); return; }
-            respuestas.push({ texto: rb.parentElement.innerText.trim(), puntos: rb.value });
+            
+            // IMPORTANTE: .trim() limpia espacios para que el Apps Script encuentre la letra A, B, C o D
+            respuestas.push({ 
+                texto: rb.parentElement.innerText.trim(), 
+                puntos: rb.value 
+            });
         }
 
         this.disabled = true;
         this.innerText = "Enviando...";
 
-        // --- EL CAMBIO PRINCIPAL ESTÁ AQUÍ ---
         const payload = { 
             nombre: nombre, 
             respuestas: respuestas,
-            tipoTest: "SUPERVISOR DE VENTAS" // Nombre exacto de la pestaña en tu Sheets
+            tipoTest: "SUPERVISOR DE VENTAS" 
         };
 
         fetch(scriptURL, {
@@ -106,4 +110,5 @@
 </script>
 </body>
 </html>
+
 
